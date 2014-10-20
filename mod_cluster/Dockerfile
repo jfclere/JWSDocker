@@ -34,14 +34,14 @@ RUN mv conf.d/mod_cluster.conf conf.d/mod_cluster.conf.example
 # Reuse jboss user
 RUN sed -i "s|User apache|User jboss|" conf/httpd.conf
 RUN sed -i "s|Group apache|Group jboss|" conf/httpd.conf
-# remove Advertise becuase no upd
-RUN sed -i "s|ServerAdvertise|#ServerAdvertise|" conf.d/mod_cluster.conf
 
 # Add the launch script which configures the container
 # on boot and launches HTTPD
 ADD launch.sh /opt/jboss/ews/httpd/
 
 ADD mod_cluster.conf /opt/jboss/ews/httpd/conf.d/
+# remove Advertise because no upd
+RUN sed -i "s|ServerAdvertise|#ServerAdvertise|" conf.d/mod_cluster.conf
 
 RUN /opt/jboss/ews/httpd/.postinstall
 
