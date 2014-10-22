@@ -24,6 +24,7 @@ WORKDIR /opt/jboss/ews/tomcat7
 
 # Add the launch script which configures the container
 ADD launch.sh /opt/jboss/ews/tomcat7/
+RUN chmod a+x /opt/jboss/ews/tomcat7/launch.sh
 
 # The JAVA_HOME is set in jboss-base-jdk image.
 CMD ["/opt/jboss/ews/tomcat7/launch.sh"]
